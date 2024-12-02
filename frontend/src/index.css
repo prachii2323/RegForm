@@ -1,0 +1,157 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.form-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input, select, button {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+button {
+  margin-top: 15px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  color: red;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+i want to add or merge below css to above index.css
+.app {
+  color: #353C4E;
+  background: #F0F2F4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.header {
+  background: white;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header > div > img {
+  height: 1.75rem;
+}
+
+.header > div > span {
+  vertical-align: super;
+  padding-left: 0.5rem;
+}
+
+.content {
+  display: flex;
+ flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding-top: 2rem;
+}
+
+.content > img {
+  height: 45vh;
+}
+
+.content > p {
+  font-size: 2rem;
+}
+
+.footer {
+  margin-bottom: 10vh;
+  text-align: center;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .navbar {
+      padding: 10px 15px;
+    }
+  
+    .navbar-button {
+      padding: 8px 16px;
+      font-size: 14px; 
+    }
+  
+    .navbar-right {
+      flex-direction: column;
+      align-items: flex-start; 
+    }
+  
+    .navbar-link {
+      font-size: 14px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 10px 10px;
+    }
+  
+    .navbar-button {
+      padding: 6px 12px;
+      font-size: 12px; 
+    }
+  
+    .navbar-right {
+      align-items: center; 
+    }
+  
+    .navbar-link {
+      font-size: 12px;
+    }
+  }
