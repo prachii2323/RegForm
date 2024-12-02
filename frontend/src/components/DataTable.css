@@ -7,7 +7,16 @@ body {
   .data-table-container {
     padding: 20px;
     max-width: 100%;
-    margin-top: 200px; 
+    margin-top: 60px; 
+  }
+  .notification {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
   }
   
   .table-title {

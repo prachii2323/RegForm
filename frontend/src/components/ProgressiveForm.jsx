@@ -33,7 +33,7 @@ const ProgressiveForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:5000/submit", {
+      const response = await fetch("https://regform-467.onrender.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

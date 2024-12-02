@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FaEdit, FaTrashAlt } from "react-icons/fa"; // React Icons
-import "./DataTable.css"; // Separate CSS file for better structure
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import "./DataTable.css";
 
 const DataTable = () => {
   const [formData, setFormData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editData, setEditData] = useState(null);
+  const [notification, setNotification] = useState(""); // New state for success messages
 
   useEffect(() => {
     fetchData();
@@ -14,7 +15,7 @@ const DataTable = () => {
 
   const fetchData = () => {
     setLoading(true);
-    fetch("http://localhost:5000/form-data")
+    fetch("https://regform-467.onrender.com/form-data")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -37,7 +38,7 @@ const DataTable = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/form-data/${id}`, {
+    fetch(`https://regform-467.onrender.com/form-data/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -45,6 +46,7 @@ const DataTable = () => {
           throw new Error("Failed to delete data");
         }
         fetchData(); // Refresh data after delete
+        showNotification("Entry deleted successfully."); // Show success message
       })
       .catch((err) => {
         console.error("Error deleting data:", err);
@@ -53,7 +55,7 @@ const DataTable = () => {
   };
 
   const handleEditSubmit = (updatedData) => {
-    fetch(`http://localhost:5000/form-data/${updatedData._id}`, {
+    fetch(`https://regform-467.onrender.com/form-data/${updatedData._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -66,11 +68,19 @@ const DataTable = () => {
         }
         setEditData(null); // Close the modal
         fetchData(); // Refresh data after edit
+        showNotification("Changes saved successfully."); // Show success message
       })
       .catch((err) => {
         console.error("Error updating data:", err);
         alert("Failed to update data");
       });
+  };
+
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => {
+      setNotification(""); // Clear notification after 3 seconds
+    }, 3000);
   };
 
   if (loading) {
@@ -84,6 +94,10 @@ const DataTable = () => {
   return (
     <div className="data-table-container">
       <h1 className="table-title">Form Data</h1>
+
+      {/* Notification */}
+      {notification && <p className="notification">{notification}</p>}
+
       <div className="table-wrapper">
         <table className="data-table">
           <thead>
@@ -97,33 +111,32 @@ const DataTable = () => {
             </tr>
           </thead>
           <tbody>
-  {formData.map((item) => (
-    <tr key={item._id}>
-      <td>{item.firstName}</td>
-      <td>{item.lastName}</td>
-      <td>{item.age}</td>
-      <td>{item.city}</td>
-      <td>{item.state}</td>
-      <td>
-        <div className="action-buttons"> {/* Flex container for buttons */}
-          <button
-            className="edit-button"
-            onClick={() => handleEdit(item._id)}
-          >
-            <FaEdit />
-          </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(item._id)}
-          >
-            <FaTrashAlt />
-          </button>
-        </div>
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+            {formData.map((item) => (
+              <tr key={item._id}>
+                <td>{item.firstName}</td>
+                <td>{item.lastName}</td>
+                <td>{item.age}</td>
+                <td>{item.city}</td>
+                <td>{item.state}</td>
+                <td>
+                  <div className="action-buttons">
+                    <button
+                      className="edit-button"
+                      onClick={() => handleEdit(item._id)}
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
 
